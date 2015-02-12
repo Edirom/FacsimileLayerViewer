@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+       "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <meta charset="UTF-8"/>
+    <head>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script type="text/javascript" src="FacsimileLayer.js"></script>
+        <style>  
+            body, html {
+	           width: 100%;
+	           height: 100%;
+        }
+            #map {
+	           height: 100%;
+	           width: 100%;
+        }     
+        </style>
+    </head>
+    
+    <body>        
+        <form action="input_button.htm">
+            <p>
+                <input id="selectBeat" type="button" value="select measure" onclick="enableRectangle()" />
+                <input id="disableBeat" type="button" value="disable measure" onclick="disableRectangle()" />
+                <input id="zoomRectangle" type="button" value="zoom" onclick="zoom()" />
+                <input id="showCenter" type="button" value="show center" onclick="showRectangleCenter()" />               
+            </p>
+        </form>     
+        
+        <div id="map"/></div>
+        <script>  
+            var map = L.map('map').setView([0, 0], 0);
+            var facsimileTile = L.tileLayer.facsimileLayer('Brandenb_37/TileGroup0/{z}-{x}-{y}.jpg', {
+                minZoom: 0,
+                maxZoom: 4,
+		        continuousWorld : true
+            }).addTo(map);
+                                                       
+            function enableRectangle() {           
+                   console.log("enableRectangle");                  
+                   facsimileTile.enableRectangle(50,50,100,100);
+            }
+            
+             function disableRectangle() {           
+                   console.log("disableRectangle");
+                   facsimileTile.disableRectangle();
+            }
+            
+            function zoom() {           
+                   console.log("zoom");
+                   facsimileTile.zoomRectangle();
+            }
+            
+            function showRectangleCenter() {           
+                   console.log("showCenter");
+                   facsimileTile.showRectangleCenter(50,50,100,100);
+            }
+           
+        </script>
+    </body>
+</html>
