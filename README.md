@@ -13,9 +13,9 @@ Dependencies
 Example
 ------------
 
-The example contains an image that cut to 4 zoom levels and an index.html file.
-It define buttons for show different functions for Facsimilelayer, 
-e.g. define facsimileLayer, drow rectangle, show rectangel center and zoom function.
-
+The example dirctory contains an image with size 2304x3456.
+The image was cut to 4 zoom levels with a java application that use java.awt.Graphics.
+In index.html file defines buttons for show different functions for FacsimieLayer, 
+e.g. drow rectangle, show rectangel center and zoom function.   
 
 
