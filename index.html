@@ -16,33 +16,43 @@
 	           width: 100%;
         }     
         </style>
-    </head>
-    
+    </head>   
     <body>        
         <form action="input_button.htm">
             <p>
-                <input id="selectBeat" type="button" value="select measure" onclick="enableRectangle()" />
-                <input id="disableBeat" type="button" value="disable measure" onclick="disableRectangle()" />
-                <input id="zoomRectangle" type="button" value="zoom" onclick="zoom()" />
-                <input id="showCenter" type="button" value="show center" onclick="showRectangleCenter()" />               
+                <input id="select" type="button" value="select rectangle" onclick="enableRectangle()" />
+                <input id="disable" type="button" value="disable rectangle" onclick="disableRectangle()" />
+                <input id="zoomRectangle" type="button" value="zoom rectangle" onclick="zoom()" />
+                <input id="showCenter" type="button" value="show rectangle center" onclick="showRectangleCenter()" />               
             </p>
         </form>     
         
         <div id="map"/></div>
         <script>  
-            var map = L.map('map').setView([0, 0], 0);
-            var facsimileTile = L.tileLayer.facsimileLayer('Brandenb_37/TileGroup0/{z}-{x}-{y}.jpg', {
+            
+          var originalMaxSize = 3456;
+          var maxZoomLevel = 0;
+		  while(originalMaxSize > 256){
+			originalMaxSize = originalMaxSize/2;
+			maxZoomLevel++;
+		  }
+		  console.log("maxZoomLevel :"+maxZoomLevel);  
+            
+            var map = L.map('map').setView([0, 0], 0);  
+           var facsimileTile =  L.tileLayer.facsimileLayer('example/{z}-{x}-{y}.jpg', {
                 minZoom: 0,
-                maxZoom: 4,
+                maxZoom: maxZoomLevel,
 		        continuousWorld : true
-            }).addTo(map);
-                                                       
-            function enableRectangle() {           
+            }); 
+             console.log("create");  
+           facsimileTile.addTo(map);
+                        console.log("addTo");                              
+           function enableRectangle() {           
                    console.log("enableRectangle");                  
                    facsimileTile.enableRectangle(50,50,100,100);
             }
             
-             function disableRectangle() {           
+            function disableRectangle() {           
                    console.log("disableRectangle");
                    facsimileTile.disableRectangle();
             }
