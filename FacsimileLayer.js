@@ -102,7 +102,12 @@ L.TileLayer.FacsimileLayer = L.TileLayer.extend({
           }
         },	
       
-	
+	/**
+	* Add tiles that contain to image only.
+	* @override
+	* @param {Point} coords.
+	* @param {Object} container.
+    */
     _addTile: function (coords, container) {
     
     var originalMaxWidth = 2304;   
